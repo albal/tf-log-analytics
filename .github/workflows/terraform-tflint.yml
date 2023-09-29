@@ -1,0 +1,35 @@
+name: 'Terraform TFLint'
+
+on: 
+  pull_request:
+    branches: [ "master", "main" ]
+
+jobs:
+  terraform-tflint:
+    name: 'Terraform TFLint'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@main
+    
+    - uses: terraform-linters/setup-tflint@v3
+      name: Setup TFLint
+      with:
+        tflint_version: latest
+
+    - name: Show version
+      run: tflint --version
+
+    - name: Init TFLint
+      run: tflint --init
+
+    - name: Run TFLint 1
+      run: tflint --chdir log-analytics-test-bootstrap --disable-rule terraform_unused_declarations --format compact
+
+    - name: Run TFLint 2
+      run: tflint --chdir log-analytics-test --disable-rule terraform_unused_declarations --format compact
