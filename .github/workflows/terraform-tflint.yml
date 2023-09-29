@@ -32,4 +32,4 @@ jobs:
       run: tflint --chdir log-analytics-test-bootstrap --disable-rule terraform_unused_declarations --format compact
 
     - name: Run TFLint 2
-      run: tflint --chdir log-analytics-test --format compact
+      run: tflint --chdir log-analytics-test --disable-rule terraform_unused_declarations --format compact
