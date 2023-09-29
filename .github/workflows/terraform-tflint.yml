@@ -28,5 +28,8 @@ jobs:
     - name: Init TFLint
       run: tflint --init
 
-    - name: Run TFLint
-      run: tflint --chdir Terraform --format compact
+    - name: Run TFLint 1
+      run: tflint --chdir log-analytics-test-bootstrap --format compact
+
+    - name: Run TFLint 2
+      run: tflint --chdir log-analytics-test --format compact
