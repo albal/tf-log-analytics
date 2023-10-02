@@ -6,4 +6,8 @@ resource "azurerm_public_ip" "pip1" {
   sku                 = "Standard"
   tags                = data.azurerm_resource_group.rg.tags
 }
+
+output "pip1" {
+  value = azurerm_public_ip.pip1.ip_address
+}
     
