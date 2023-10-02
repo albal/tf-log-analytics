@@ -93,11 +93,20 @@ resource "azurerm_application_gateway" "appgw" {
   }
 
   request_routing_rule {
+    name                       = "s185-sandbox-ssl-redirect-rule"
+    rule_type                  = "Basic"
+    priority                   = 2000
+    http_listener_name         = "s185-sandbox-ssl-listener"
+    backend_address_pool_name  = "s185-sandbox-backend-pool"
+    backend_http_settings_name = "s185-sandbox-backend-http-settings"
+  }
+
+  request_routing_rule {
     name                        = "s185-sandbox-redirect-rule"
     rule_type                   = "Basic"
-    redirect_configuration_name = "s185-sandbox-redirect-config"
     priority                    = 2001
     http_listener_name          = "s185-sandbox-http-listener"
+    redirect_configuration_name = "s185-sandbox-redirect-config"
   }
 
   probe {
