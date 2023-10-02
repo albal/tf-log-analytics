@@ -7,7 +7,7 @@ resource "azurerm_monitor_diagnostic_setting" "firewall-diagnostics" {
   name                       = "s185-firewall-diagnostics"
   target_resource_id         = azurerm_application_gateway.appgw.id
   log_analytics_workspace_id = data.azurerm_log_analytics_workspace.la-ws.id
-  
+
   metric {
     category = "AllMetrics"
     enabled  = true
